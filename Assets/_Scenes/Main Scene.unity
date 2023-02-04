@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8286,6 +8286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: tree
       objectReference: {fileID: 0}
+    - target: {fileID: 3578390184556884166, guid: 2bb10c21bbc273b40aede9505bc7df69, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb10c21bbc273b40aede9505bc7df69, type: 3}
 --- !u!1001 &1118254183
@@ -12739,7 +12743,7 @@ MonoBehaviour:
   groundTiles: []
   treePrefab: {fileID: 3578390184556884166, guid: 2bb10c21bbc273b40aede9505bc7df69, type: 3}
   timerText: {fileID: 1494256971}
-  spawnInterval: 15
+  spawnInterval: 3
 --- !u!4 &1567606300
 Transform:
   m_ObjectHideFlags: 0

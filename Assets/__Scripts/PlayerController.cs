@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [Header("Public Variables")]
     public bool stopMovement;
     public bool treeFound = false;
+    public int mouseClick = 0;
+    public GameObject currentTree = null;
 
 
     [Header("Adjustable Variables")]
@@ -78,7 +80,14 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Tree")
         {
             treeFound = true;
+            currentTree = collision.gameObject;
             Debug.Log("Collision Detected Bitch");
+        }
+
+        if (collision.tag == "Root")
+        {
+            treeFound = false;
+            Debug.Log("Root Found Bitch");
         }
     }
 
@@ -87,17 +96,36 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Tree")
         {
             treeFound = false;
+            currentTree = null;
             Debug.Log("Collision Left Bitch");
+        }
+
+        if (collision.tag == "Root")
+        {
+            treeFound = false;
+            Debug.Log("Root Left Bitch");
         }
     }
 
     public void TreeDetectionInput()
     {
-        if (treeFound)
+        if (treeFound && currentTree != null)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
                 StartCoroutine(TreeInteraction());
+            }
+
+            if(Input.GetKeyDown(KeyCode.Mouse0)) 
+            {
+                mouseClick++;
+            }
+
+            if(mouseClick>= 3)
+            {
+                Destroy(currentTree);
+                Debug.Log("Tree Destroyed");
+                mouseClick= 0;
             }
         }
     }

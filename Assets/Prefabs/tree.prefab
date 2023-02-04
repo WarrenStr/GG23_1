@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3578390184556884163}
   - component: {fileID: 3578390184556884160}
   - component: {fileID: 3578390184556884161}
-  - component: {fileID: 1247757014841555874}
   - component: {fileID: 2846919058087635023}
+  - component: {fileID: 273222045132321461}
   m_Layer: 6
   m_Name: tree
   m_TagString: Tree
@@ -113,18 +113,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1247757014841555874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3578390184556884166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d4c7f9051acb14409a90fa4e7d4160b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &2846919058087635023
 Rigidbody2D:
   serializedVersion: 4
@@ -146,3 +134,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &273222045132321461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3578390184556884166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c658b3c9aaa5746a53b9fd1f1c3fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootParent: {fileID: 7160634782750739, guid: 72e148b941332944280293c6ddd8b464, type: 3}
