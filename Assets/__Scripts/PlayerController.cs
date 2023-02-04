@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Add before Runtime")]
     [SerializeField] Transform movePoint;
+    [SerializeField] Animator anim;
 
 
     void Start()
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (!stopMovement) { movePlayer(); }
@@ -46,8 +47,6 @@ public class PlayerController : MonoBehaviour
                 {
                     movePoint.position = tempPos; //moves movePoint to left or right, depending on which direction is pressed
                 }
-
-
             }
 
             //prevent diagonal movement by making the following if statment an else if statement
@@ -59,8 +58,13 @@ public class PlayerController : MonoBehaviour
                 {
                     movePoint.position = tempPos; //moves movePoint to up or down, depending on which direction is pressed
                 }
-                
             }
+
+            //anim.SetBool("boolInAnim", false); //for future anim use
+        }
+        else
+        {
+            //anim.SetBool("boolInAnim", true);
         }
     }
 }
