@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            //anim.SetBool("boolInAnim", false); //for future anim use
+            anim.SetBool("boolInAnim", false); //for future anim use
         }
         else
         {
-            //anim.SetBool("boolInAnim", true);
+            anim.SetBool("boolInAnim", true);
         }
     }
 
