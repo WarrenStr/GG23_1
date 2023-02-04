@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Public Variables")]
     public bool stopMovement;
+    public bool treeFound = false;
+
 
     [Header("Adjustable Variables")]
     [SerializeField] float moveSpeed = 5f;
@@ -17,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Add before Runtime")]
     [SerializeField] Transform movePoint;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject speechBubble;
 
 
     void Start()
@@ -29,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!stopMovement) { movePlayer(); }
+
+        TreeDetectionInput();
     }
 
     /// <summary>
@@ -66,5 +71,47 @@ public class PlayerController : MonoBehaviour
         {
             //anim.SetBool("boolInAnim", true);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Tree")
+        {
+            treeFound = true;
+            Debug.Log("Collision Detected Bitch");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Tree")
+        {
+            treeFound = false;
+            Debug.Log("Collision Left Bitch");
+        }
+    }
+
+    public void TreeDetectionInput()
+    {
+        if (treeFound)
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(TreeInteraction());
+            }
+        }
+    }
+
+    private IEnumerator TreeInteraction()
+    {
+        Debug.Log("TreeShaken Bitch");
+        treeFound= false;
+
+        speechBubble.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+        Debug.Log("TreeShaken Is Over");
+
+        speechBubble.SetActive(false);
     }
 }

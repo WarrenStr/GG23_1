@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (spawnTimer <= 0 )
         {
             Instantiate(treePrefab, treeSpawn.transform);
-            treePrefab.transform.localPosition = rootOffset;
+            //treePrefab.transform.localPosition = rootOffset;
             spawnTimer = spawnInterval;
         }
     }
