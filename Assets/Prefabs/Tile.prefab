@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 870761276112788931}
   - component: {fileID: 870761276112788932}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,4 +83,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1

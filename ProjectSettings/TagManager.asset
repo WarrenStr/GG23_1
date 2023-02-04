@@ -14,8 +14,8 @@ TagManager:
   - Tree
   - StopMovement
   - Enemy
-  - 
-  - 
+  - Ground
+  - Player
   - 
   - 
   - 
