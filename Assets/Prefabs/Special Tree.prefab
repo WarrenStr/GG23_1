@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b10685533fe7c047824901b34ae6603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupItem: {fileID: -2413806693520163455, guid: 0e3cd411bfc5d3647afd2d74879ecd75, type: 3}
+  pickupItem: {fileID: 21300000, guid: d77ca8740d83e0549a2ae07fb2ad8094, type: 3}
+  isTreeDestroyed: 0

@@ -13,8 +13,13 @@ public class GameManager : MonoBehaviour
     public float specialTreeSpawnRate;
     public GameObject[] treePrefabs;
     public TextMeshProUGUI timerText;
-    public float spawnInterval = 1f;
-    private float spawnTimer;
+    public float treeSpawnInterval = 1f;
+    private float treeSpawnTimer;
+
+    [Header("Wolf Stuff")]
+    public GameObject wolf;
+    public float wolfSpawnInterval = 1f;
+    private float wolfSpawnTimer;
 
     [Header("Item Stuff")]
     public int itemsCollected = -1;
@@ -32,14 +37,17 @@ public class GameManager : MonoBehaviour
         FindTiles();
         CountItemsCollected();
 
-        spawnTimer = spawnInterval;
-        
+        treeSpawnTimer = treeSpawnInterval;
+        wolfSpawnTimer = wolfSpawnInterval;
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
         SpawnTrees();
+        SpawnWolves();
 
         if (gameIsOn)
         {
@@ -52,10 +60,10 @@ public class GameManager : MonoBehaviour
     {
         //treeSpawn.transform.position = treeSpawn.transform.position + rootOffset; // Un-comment this line for a cool 
 
-        timerText.text = spawnTimer.ToString("0");
-        spawnTimer -= Time.deltaTime;  
+        timerText.text = treeSpawnTimer.ToString("0");
+        treeSpawnTimer -= Time.deltaTime;  
         
-        if (spawnTimer <= 0 && Random.value < specialTreeSpawnRate)
+        if (treeSpawnTimer <= 0 && Random.value < specialTreeSpawnRate)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 
@@ -63,10 +71,10 @@ public class GameManager : MonoBehaviour
 
             Instantiate(treePrefabs[0], treeSpawn.transform);
             //treePrefab.transform.localPosition = rootOffset;
-            spawnTimer = spawnInterval;
+            treeSpawnTimer = treeSpawnInterval;
         }
 
-        if (spawnTimer <= 0 && Random.value >= specialTreeSpawnRate)
+        if (treeSpawnTimer <= 0 && Random.value >= specialTreeSpawnRate)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 
@@ -74,7 +82,37 @@ public class GameManager : MonoBehaviour
 
             Instantiate(treePrefabs[1], treeSpawn.transform);
             //treePrefab.transform.localPosition = rootOffset;
-            spawnTimer = spawnInterval;
+            treeSpawnTimer = treeSpawnInterval;
+        }
+    }
+
+    public void SpawnWolves() // Picks a random tile from the GroundTile list and spawns a tree there every 30 seconds
+    {
+        //treeSpawn.transform.position = treeSpawn.transform.position + rootOffset; // Un-comment this line for a cool 
+
+        timerText.text = wolfSpawnTimer.ToString("0");
+        wolfSpawnTimer -= Time.deltaTime;
+
+        if (wolfSpawnTimer <= 0)
+        {
+            GameObject wolfSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
+
+            Vector3 rootOffset = new Vector3(0, -0.5f, 0);
+
+            Instantiate(wolf, wolfSpawn.transform);
+            //treePrefab.transform.localPosition = rootOffset;
+            wolfSpawnTimer = wolfSpawnInterval;
+        }
+
+        if (wolfSpawnTimer <= 0)
+        {
+            GameObject wolfSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
+
+            Vector3 rootOffset = new Vector3(0, -0.5f, 0);
+
+            Instantiate(wolf, wolfSpawn.transform);
+            //treePrefab.transform.localPosition = rootOffset;
+            wolfSpawnTimer = wolfSpawnInterval;
         }
     }
 
