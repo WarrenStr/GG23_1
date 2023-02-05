@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int itemsCollected = -1;
     public int itemsToWin = 5;
     public TextMeshProUGUI itemCount;
+    public GameObject WinScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -84,9 +86,17 @@ public class GameManager : MonoBehaviour
         itemCount.text = "Items collected: " + itemsCollected.ToString("0") + " / " + itemsToWin.ToString("0");
         if(itemsCollected >= itemsToWin)
         {
+            itemCount.gameObject.SetActive(false);
             // Avengers End Game
+            Time.timeScale = .5f;
+            WinScreen.gameObject.SetActive(true);
             Debug.Log("Game Has Been Won");
         }
+    }
 
+    public void RestartGameButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
