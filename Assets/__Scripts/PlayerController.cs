@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform movePoint;
     [SerializeField] Animator anim;
     [SerializeField] GameObject speechBubble;
+
+
+    private Animator currentTreeAnim;
     private GameManager itemsCollectedRef;
 
 
@@ -56,7 +59,7 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f) //Checks to see if left or right is pressed
             {
                 Vector3 tempPos = movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f); //temp var to limit calculations
-                if (!Physics2D.OverlapCircle(tempPos, .2f, whatStopMovement)) //checks to see if the movePoint will collide with an obj with the whatStopMovement layer
+                if (!Physics2D.OverlapCircle(tempPos, .1f, whatStopMovement)) //checks to see if the movePoint will collide with an obj with the whatStopMovement layer
                 {
                     movePoint.position = tempPos; //moves movePoint to left or right, depending on which direction is pressed
                 }
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
         {
             treeFound = true;
             currentTree = collision.gameObject;
+            currentTreeAnim = currentTree.GetComponent<Animator>();
             Debug.Log("Collision Detected Bitch");
         }
 
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
         {
             specialTreeFound = true;
             currentTree = collision.gameObject;
+            currentTreeAnim = currentTree.GetComponent<Animator>();
             Debug.Log("Collision Detected Bitch");
         }
 
@@ -156,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space)) 
             {
-                // Tree Shake Animation
+                currentTreeAnim.SetBool("Tree shed", true);
                 mouseClick++;
             }
 
@@ -175,7 +180,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                // Tree Shake Animation
+                currentTreeAnim.SetBool("Tree shed", true);
                 mouseClick++;
             }
 
@@ -188,9 +193,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator TreeInteraction()
     {
-        // Tree Shake Animation
+        currentTreeAnim.SetBool("Tree shake", true);
+        yield return new WaitForSeconds(.4f);
+        currentTreeAnim.SetBool("Tree shake", false);
 
-        treeFound= false;
+        treeFound = false;
 
         speechBubble.SetActive(true);
 
@@ -218,11 +225,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DestroyTree()
     {
-        // Tree Fall Animation
+        currentTreeAnim.SetBool("Tree fall", true);
 
         yield return new WaitForSeconds(1);
 
-        Destroy(currentTree);
+
         currentTree = null;
         Debug.Log("Tree Destroyed");
         treeFound = false;
