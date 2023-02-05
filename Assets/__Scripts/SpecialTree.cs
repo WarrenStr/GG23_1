@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpecialTree : MonoBehaviour
 {
-    public GameObject pickupItem;
+    public Sprite pickupItem;
+    public bool isTreeDestroyed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +20,16 @@ public class SpecialTree : MonoBehaviour
 
     public void DropItem() 
     {
-        Instantiate(pickupItem, transform);
+        GetComponent<SpriteRenderer>().sprite = pickupItem;
+        isTreeDestroyed = true;
     }
+
+
 
     //public IEnumerator DropPickupItem()
     //{
     //    yield return new WaitForSeconds(3);
 
-        
+
     //}
 }

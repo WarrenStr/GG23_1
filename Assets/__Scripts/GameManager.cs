@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<GameObject> groundTiles = new List<GameObject>();
 
     [Header("Tree Stuff")]
+    public float specialTreeSpawnPercent;
     public GameObject[] treePrefabs;
     public TextMeshProUGUI timerText;
     public float spawnInterval = 1f;
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
         timerText.text = spawnTimer.ToString("0");
         spawnTimer -= Time.deltaTime;  
         
-        if (spawnTimer <= 0 && Random.value <= .79f)
+        if (spawnTimer <= 0 && Random.value < specialTreeSpawnPercent)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
             spawnTimer = spawnInterval;
         }
 
-        if (spawnTimer <= 0 && Random.value >= .8f)
+        if (spawnTimer <= 0 && Random.value >= specialTreeSpawnPercent)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 

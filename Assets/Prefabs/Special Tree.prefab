@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4178621524281993111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -8.48, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,10 +100,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.14, y: 2}
     newSize: {x: 4.68, y: 6.28}
     adaptiveTilingThreshold: 0.5
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b10685533fe7c047824901b34ae6603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupItem: {fileID: 3830126425908366175, guid: 886f6590bd4e0cc4492d84598b10ea66, type: 3}
+  pickupItem: {fileID: -2413806693520163455, guid: 0e3cd411bfc5d3647afd2d74879ecd75, type: 3}

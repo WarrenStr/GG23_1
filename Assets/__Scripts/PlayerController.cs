@@ -197,12 +197,9 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        
-
-        Destroy(currentTree);
         currentTree= null;
         Debug.Log("Tree Destroyed");
         specialTreeFound= false;
-        mouseClick = 0;
+        mouseClick = 0; 
     }
 }
