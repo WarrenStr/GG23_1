@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         itemsCollectedRef = GameObject.FindObjectOfType<GameManager>();
 
+
     }
 
 
@@ -220,8 +221,9 @@ public class PlayerController : MonoBehaviour
         specialTreeFound = false;
 
         speechBubble.SetActive(true);
+        itemsCollectedRef.quipCount++;
 
-        
+
         speechBubbleText.text = spText[Random.Range(0, spText.Count)];
 
         yield return new WaitForSeconds(3);

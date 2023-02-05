@@ -24,13 +24,16 @@ public class GameManager : MonoBehaviour
     [Header("Item Stuff")]
     public int itemsCollected = -1;
     public int itemsToWin = 5;
+    public int  quipCount = 0;
     public TextMeshProUGUI itemCount;
+    public TextMeshProUGUI quipCountText;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public GameObject StartScreen;
     public float gameTimer;
     public TextMeshProUGUI gameTimerText;
     public TextMeshProUGUI winScreenTimerText;
+    public TextMeshProUGUI winScreenQuipText;
     public bool gameIsOn = false;
 
     // Start is called before the first frame update
@@ -61,6 +64,7 @@ public class GameManager : MonoBehaviour
             SpawnWolves();
             gameTimer += Time.deltaTime;
             gameTimerText.text = gameTimer.ToString("0:00");
+            quipCountText.text = "Quips: " + quipCount.ToString("0");
         }
     }
 
@@ -147,6 +151,7 @@ public class GameManager : MonoBehaviour
             // Avengers End Game
             gameIsOn = false;
             winScreenTimerText.text = "Time: " + gameTimer.ToString("0:00");
+            winScreenQuipText.text = "Quips: " + quipCount.ToString("0");
             Time.timeScale = .5f;
             WinScreen.gameObject.SetActive(true);
             Debug.Log("Game Has Been Won");
@@ -156,6 +161,7 @@ public class GameManager : MonoBehaviour
     public void RestartGameButton()
     {
         Time.timeScale = 1;
+        quipCount = 0;
         gameIsOn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
     public void StartGameButton()
     {
         StartScreen.SetActive(false);
+        quipCount = 0;
         Time.timeScale = 1;
         gameIsOn = true;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -171,7 +178,9 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         gameIsOn = false;
+        winScreenQuipText.text = "Quips: " + quipCount.ToString("0");
         winScreenTimerText.text = "Time: " + gameTimer.ToString("0:00");
+        
         Time.timeScale = .5f;
         LoseScreen.gameObject.SetActive(true);
         Debug.Log("Game Has Been Won");
