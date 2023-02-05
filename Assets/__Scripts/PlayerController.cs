@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public int mouseClick = 0;
     public GameObject currentTree = null;
     public TextMeshProUGUI speechBubbleText;
+    public List<string> spText = new List<string>();
 
 
     [Header("Adjustable Variables")]
@@ -220,9 +221,11 @@ public class PlayerController : MonoBehaviour
 
         speechBubble.SetActive(true);
 
-        speechBubbleText.text = "So that just happened!";
+        
+        speechBubbleText.text = spText[Random.Range(0, spText.Count)];
 
         yield return new WaitForSeconds(3);
+
 
         speechBubble.SetActive(false);
     }
@@ -249,7 +252,7 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-
+        Destroy(currentTree);
         currentTree = null;
         Debug.Log("Tree Destroyed");
         treeFound = false;
