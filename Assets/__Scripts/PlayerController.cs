@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Tree")
         {
             treeFound = true;
+            specialTreeFound = false;
             currentTree = collision.gameObject;
             currentTreeAnim = currentTree.GetComponent<Animator>();
             Debug.Log("Collision Detected Bitch");
@@ -97,6 +98,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Special Tree")
         {
             specialTreeFound = true;
+            treeFound = false;
             currentTree = collision.gameObject;
             currentTreeAnim = currentTree.GetComponent<Animator>();
             Debug.Log("Collision Detected Bitch");
@@ -113,6 +115,11 @@ public class PlayerController : MonoBehaviour
             itemsCollectedRef.CountItemsCollected();
             StartCoroutine(ItemInteraction());
             Destroy(collision.gameObject);
+        }
+
+        if (collision.tag == "Wolf")
+        {
+            StartCoroutine(EndGame());
         }
 
     }
@@ -133,14 +140,16 @@ public class PlayerController : MonoBehaviour
         {
             treeFound = false;
             currentTree = null;
+            mouseClick = 0;
             Debug.Log("Collision Left Bitch");
         }
 
-        if (collision.tag == "Tree")
+        if (collision.tag == "Special Tree")
         {
-            treeFound = false;
-            currentTree = null; ;
-            Debug.Log("Collision LEft Bitch");
+            specialTreeFound = false;
+            currentTree = null;
+            mouseClick = 0;
+            Debug.Log("Special Col LEft Bitch");
         }
 
         if (collision.tag == "Root")
@@ -198,6 +207,7 @@ public class PlayerController : MonoBehaviour
         currentTreeAnim.SetBool("Tree shake", false);
 
         treeFound = false;
+        specialTreeFound = false;
 
         speechBubble.SetActive(true);
 
@@ -213,6 +223,7 @@ public class PlayerController : MonoBehaviour
         // Tree Shake Animation
 
         treeFound = false;
+        specialTreeFound = false;   
 
         speechBubble.SetActive(true);
 
@@ -241,12 +252,21 @@ public class PlayerController : MonoBehaviour
         // Tree Fall Animation
 
         currentTree.GetComponent<SpecialTree>().DropItem();
-
+        currentTree = null;
         yield return new WaitForSeconds(1);
 
-        currentTree= null;
+        //currentTree= null;
         Debug.Log("Tree Destroyed");
         specialTreeFound= false;
         mouseClick = 0; 
+    }
+
+    private IEnumerator EndGame()
+    {
+        // Player death anim
+
+        yield return new WaitForSeconds(3);
+
+        itemsCollectedRef.EndGame();
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Root
   - Special Tree
   - Special Item
+  - Wolf
   layers:
   - Default
   - TransparentFX

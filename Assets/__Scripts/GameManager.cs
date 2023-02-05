@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameTimerText;
     public TextMeshProUGUI winScreenTimerText;
     public bool gameIsOn = false;
+    public bool playerDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -166,5 +167,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         gameIsOn = true;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void EndGame()
+    {
+        if (playerDead)
+        {
+            gameIsOn = false;
+            winScreenTimerText.text = "Time: " + gameTimer.ToString("0:00");
+            Time.timeScale = .5f;
+            LoseScreen.gameObject.SetActive(true);
+            Debug.Log("Game Has Been Won");
+        }
     }
 }
