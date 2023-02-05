@@ -23,12 +23,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform movePoint;
     [SerializeField] Animator anim;
     [SerializeField] GameObject speechBubble;
+    private GameManager itemsCollectedRef;
 
 
     void Start()
     {
         movePoint.parent = null;
-        
+
+        itemsCollectedRef = GameObject.FindObjectOfType<GameManager>();
+
     }
 
 
@@ -97,6 +100,13 @@ public class PlayerController : MonoBehaviour
             treeFound = false;
             Debug.Log("Root Found Bitch");
         }
+
+        if (collision.tag =="Special Item")
+        {
+            itemsCollectedRef.CountItemsCollected();
+            Destroy(collision.gameObject);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)

@@ -6,16 +6,18 @@ public class SpecialTree : MonoBehaviour
 {
     public Sprite pickupItem;
     public bool isTreeDestroyed = false;
+
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        SpecialItemCheck();
     }
 
     public void DropItem() 
@@ -24,6 +26,13 @@ public class SpecialTree : MonoBehaviour
         isTreeDestroyed = true;
     }
 
+    public void SpecialItemCheck()
+    {
+        if (isTreeDestroyed)
+        {
+            gameObject.tag = "Special Item";
+        }
+    }
 
 
     //public IEnumerator DropPickupItem()

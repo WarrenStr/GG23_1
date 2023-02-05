@@ -9,17 +9,22 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<GameObject> groundTiles = new List<GameObject>();
 
     [Header("Tree Stuff")]
-    public float specialTreeSpawnPercent;
+    public float specialTreeSpawnRate;
     public GameObject[] treePrefabs;
     public TextMeshProUGUI timerText;
     public float spawnInterval = 1f;
-    private float spawnTimer;   
-    
+    private float spawnTimer;
+
+    [Header("Item Stuff")]
+    public int itemsCollected = -1;
+    public int itemsToWin = 5;
+    public TextMeshProUGUI itemCount;
 
     // Start is called before the first frame update
     void Start()
     {
         FindTiles();
+        CountItemsCollected();
 
         spawnTimer = spawnInterval;
     }
@@ -37,7 +42,7 @@ public class GameManager : MonoBehaviour
         timerText.text = spawnTimer.ToString("0");
         spawnTimer -= Time.deltaTime;  
         
-        if (spawnTimer <= 0 && Random.value < specialTreeSpawnPercent)
+        if (spawnTimer <= 0 && Random.value < specialTreeSpawnRate)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 
@@ -48,7 +53,7 @@ public class GameManager : MonoBehaviour
             spawnTimer = spawnInterval;
         }
 
-        if (spawnTimer <= 0 && Random.value >= specialTreeSpawnPercent)
+        if (spawnTimer <= 0 && Random.value >= specialTreeSpawnRate)
         {
             GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
 
@@ -71,5 +76,17 @@ public class GameManager : MonoBehaviour
                 groundTiles.Add(tile);
             }
         }
+    }
+
+    public void CountItemsCollected()
+    {
+        itemsCollected++;
+        itemCount.text = "Items collected: " + itemsCollected.ToString("0") + " / " + itemsToWin.ToString("0");
+        if(itemsCollected >= itemsToWin)
+        {
+            // Avengers End Game
+            Debug.Log("Game Has Been Won");
+        }
+
     }
 }
