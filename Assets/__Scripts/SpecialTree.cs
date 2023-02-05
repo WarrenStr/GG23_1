@@ -19,13 +19,13 @@ public class SpecialTree : MonoBehaviour
 
     public void DropItem() 
     {
-        StartCoroutine(DropPickupItem());
-    }
-
-    public IEnumerator DropPickupItem()
-    {
-        yield return new WaitForSeconds(3);
-
         Instantiate(pickupItem, transform);
     }
+
+    //public IEnumerator DropPickupItem()
+    //{
+    //    yield return new WaitForSeconds(3);
+
+        
+    //}
 }
