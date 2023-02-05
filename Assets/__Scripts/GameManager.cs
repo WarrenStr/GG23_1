@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public int itemsToWin = 5;
     public TextMeshProUGUI itemCount;
     public GameObject WinScreen;
+    public float gameTimer;
+    public TextMeshProUGUI gameTimerText;
+    public TextMeshProUGUI winScreenTimerText;
+    public bool gameIsOn = true;
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +33,19 @@ public class GameManager : MonoBehaviour
         CountItemsCollected();
 
         spawnTimer = spawnInterval;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         SpawnTrees();
+
+        if (gameIsOn)
+        {
+            gameTimer += Time.deltaTime;
+            gameTimerText.text = gameTimer.ToString("0:00");
+        }
     }
 
     public void SpawnTrees() // Picks a random tile from the GroundTile list and spawns a tree there every 30 seconds
@@ -83,11 +94,13 @@ public class GameManager : MonoBehaviour
     public void CountItemsCollected()
     {
         itemsCollected++;
-        itemCount.text = "Items collected: " + itemsCollected.ToString("0") + " / " + itemsToWin.ToString("0");
+        itemCount.text = itemsCollected.ToString("0") + " / " + itemsToWin.ToString("0");
         if(itemsCollected >= itemsToWin)
         {
-            itemCount.gameObject.SetActive(false);
+            //itemCount.gameObject.SetActive(false);
             // Avengers End Game
+            gameIsOn = false;
+            winScreenTimerText.text = "Time: " + gameTimer.ToString("0:00");
             Time.timeScale = .5f;
             WinScreen.gameObject.SetActive(true);
             Debug.Log("Game Has Been Won");
@@ -97,6 +110,7 @@ public class GameManager : MonoBehaviour
     public void RestartGameButton()
     {
         Time.timeScale = 1;
+        gameIsOn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
