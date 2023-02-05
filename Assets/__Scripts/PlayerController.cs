@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Public Variables")]
     public bool stopMovement;
     public bool treeFound = false;
+    public bool specialTreeFound = false;
     public int mouseClick = 0;
     public GameObject currentTree = null;
 
@@ -84,6 +85,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision Detected Bitch");
         }
 
+        if (collision.tag == "Special Tree")
+        {
+            specialTreeFound = true;
+            currentTree = collision.gameObject;
+            Debug.Log("Collision Detected Bitch");
+        }
+
         if (collision.tag == "Root")
         {
             treeFound = false;
@@ -98,6 +106,13 @@ public class PlayerController : MonoBehaviour
             treeFound = false;
             currentTree = null;
             Debug.Log("Collision Left Bitch");
+        }
+
+        if (collision.tag == "Tree")
+        {
+            treeFound = false;
+            currentTree = null; ;
+            Debug.Log("Collision LEft Bitch");
         }
 
         if (collision.tag == "Root")
@@ -118,28 +133,76 @@ public class PlayerController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Mouse0)) 
             {
+                // Tree Shake Animation
                 mouseClick++;
             }
 
             if(mouseClick>= 3)
             {
-                Destroy(currentTree);
-                Debug.Log("Tree Destroyed");
-                mouseClick= 0;
+                StartCoroutine(DestroyTree());
+            }
+        }
+
+        if (specialTreeFound && currentTree != null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                StartCoroutine(TreeInteraction());
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                // Tree Shake Animation
+                mouseClick++;
+            }
+
+            if (mouseClick >= 3)
+            {
+                StartCoroutine(DestroySpecialTree());
             }
         }
     }
 
     private IEnumerator TreeInteraction()
     {
-        Debug.Log("TreeShaken Bitch");
+        // Tree Shake Animation
+
         treeFound= false;
 
         speechBubble.SetActive(true);
 
         yield return new WaitForSeconds(3);
-        Debug.Log("TreeShaken Is Over");
 
         speechBubble.SetActive(false);
+    }
+
+    private IEnumerator DestroyTree()
+    {
+        // Tree Fall Animation
+
+        yield return new WaitForSeconds(1);
+
+        Destroy(currentTree);
+        currentTree = null;
+        Debug.Log("Tree Destroyed");
+        treeFound = false;
+        mouseClick = 0;
+    }
+
+    private IEnumerator DestroySpecialTree()
+    {
+        // Tree Fall Animation
+
+        currentTree.GetComponent<SpecialTree>().DropItem();
+
+        yield return new WaitForSeconds(1);
+
+        
+
+        Destroy(currentTree);
+        currentTree= null;
+        Debug.Log("Tree Destroyed");
+        specialTreeFound= false;
+        mouseClick = 0;
     }
 }

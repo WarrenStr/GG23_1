@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tree
   - Root
+  - Special Tree
   layers:
   - Default
   - TransparentFX

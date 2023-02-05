@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<GameObject> groundTiles = new List<GameObject>();
 
     [Header("Tree Stuff")]
-    public GameObject treePrefab;
+    public GameObject[] treePrefabs;
     public TextMeshProUGUI timerText;
     public float spawnInterval = 1f;
     private float spawnTimer;   
@@ -31,17 +31,29 @@ public class GameManager : MonoBehaviour
 
     public void SpawnTrees() // Picks a random tile from the GroundTile list and spawns a tree there every 30 seconds
     {
-        GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
-
-        Vector3 rootOffset = new Vector3(0, -0.5f, 0);
-
         //treeSpawn.transform.position = treeSpawn.transform.position + rootOffset; // Un-comment this line for a cool 
 
         timerText.text = spawnTimer.ToString("0");
-        spawnTimer -= Time.deltaTime;   
-        if (spawnTimer <= 0 )
+        spawnTimer -= Time.deltaTime;  
+        
+        if (spawnTimer <= 0 && Random.value <= .79f)
         {
-            Instantiate(treePrefab, treeSpawn.transform);
+            GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
+
+            Vector3 rootOffset = new Vector3(0, -0.5f, 0);
+
+            Instantiate(treePrefabs[0], treeSpawn.transform);
+            //treePrefab.transform.localPosition = rootOffset;
+            spawnTimer = spawnInterval;
+        }
+
+        if (spawnTimer <= 0 && Random.value >= .8f)
+        {
+            GameObject treeSpawn = groundTiles[Random.Range(0, groundTiles.Count)];
+
+            Vector3 rootOffset = new Vector3(0, -0.5f, 0);
+
+            Instantiate(treePrefabs[1], treeSpawn.transform);
             //treePrefab.transform.localPosition = rootOffset;
             spawnTimer = spawnInterval;
         }
