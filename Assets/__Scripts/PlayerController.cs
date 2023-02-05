@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
                 mouseClick++;
             }
 
-            if(mouseClick>= 3)
+            if(mouseClick>= 2)
             {
                 StartCoroutine(DestroyTree());
             }
@@ -203,7 +203,7 @@ public class PlayerController : MonoBehaviour
                 mouseClick++;
             }
 
-            if (mouseClick >= 3)
+            if (mouseClick >= 2)
             {
                 StartCoroutine(DestroySpecialTree());
             }
