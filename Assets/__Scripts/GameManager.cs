@@ -26,16 +26,20 @@ public class GameManager : MonoBehaviour
     public int itemsToWin = 5;
     public TextMeshProUGUI itemCount;
     public GameObject WinScreen;
+    public GameObject LoseScreen;
+    public GameObject StartScreen;
     public float gameTimer;
     public TextMeshProUGUI gameTimerText;
     public TextMeshProUGUI winScreenTimerText;
-    public bool gameIsOn = true;
+    public bool gameIsOn = false;
 
     // Start is called before the first frame update
     void Start()
     {
         FindTiles();
         CountItemsCollected();
+
+        gameIsOn = false;
 
         treeSpawnTimer = treeSpawnInterval;
         wolfSpawnTimer = wolfSpawnInterval;
@@ -46,11 +50,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnTrees();
-        SpawnWolves();
+        if (!gameIsOn)
+        {
+            Time.timeScale = 0;
+        }
 
         if (gameIsOn)
         {
+            SpawnTrees();
+            SpawnWolves();
             gameTimer += Time.deltaTime;
             gameTimerText.text = gameTimer.ToString("0:00");
         }
@@ -150,5 +158,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         gameIsOn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void StartGameButton()
+    {
+        StartScreen.SetActive(false);
+        Time.timeScale = 1;
+        gameIsOn = true;
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
