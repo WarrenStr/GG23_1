@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4178621524281993104}
   - component: {fileID: 3447440670518329118}
   - component: {fileID: 8820485737815950055}
+  - component: {fileID: 8218920091415428758}
   m_Layer: 6
   m_Name: Special Tree
   m_TagString: Special Tree
@@ -148,3 +149,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupItem: {fileID: 21300000, guid: d77ca8740d83e0549a2ae07fb2ad8094, type: 3}
   isTreeDestroyed: 0
+--- !u!95 &8218920091415428758
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178621524281993111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28a726b3bd1b3744c9ad59a95e02c51d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

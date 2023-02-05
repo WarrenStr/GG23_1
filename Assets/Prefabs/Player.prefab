@@ -177,7 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2240
   movePoint: {fileID: 5680712937472284379}
-  anim: {fileID: 1989325960}
+  anim: {fileID: 0}
   speechBubble: {fileID: 6001913245512634348}
 --- !u!61 &4799404390370833556
 BoxCollider2D:

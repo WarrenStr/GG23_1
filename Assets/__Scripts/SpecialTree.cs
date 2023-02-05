@@ -24,7 +24,7 @@ public class SpecialTree : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = pickupItem;
         isTreeDestroyed = true;
-        gameObject.transform.localScale = new Vector3(.5f, .5f, 1);
+
     }
 
     public void SpecialItemCheck()
