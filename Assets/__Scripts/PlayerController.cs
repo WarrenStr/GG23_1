@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (!stopMovement) { movePlayer(); }
-
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime); //moves player towards the movePoint
         TreeDetectionInput();
     }
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void movePlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime); //moves player towards the movePoint
+        
 
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f) //prevents player from moving until they have reached the movePoint position
         {
@@ -117,11 +117,20 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.tag == "Wolf")
-        {
-            StartCoroutine(EndGame());
-        }
+        //if (collision.tag == "Wolf")
+        //{
+        //    StartCoroutine(EndGame());
+        //}
 
+    }
+
+    public void collideWithWolf()
+    {
+        StartCoroutine(EndGame());
+    }
+    public void collideWithRoot()
+    {
+        StartCoroutine(EndGame());
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -263,10 +272,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator EndGame()
     {
+        stopMovement = true;
         // Player death anim
         Debug.Log("Wolf");
+        anim.SetBool("guydie", true);
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
 
         itemsCollectedRef.EndGame();
     }

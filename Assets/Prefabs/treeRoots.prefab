@@ -252,8 +252,16 @@ PrefabInstance:
       value: rootTrail
       objectReference: {fileID: 0}
     - target: {fileID: 8451711937902787498, guid: b5001f1da575e2e4a89fd0f2f1022997, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451711937902787498, guid: b5001f1da575e2e4a89fd0f2f1022997, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451711937902787498, guid: b5001f1da575e2e4a89fd0f2f1022997, type: 3}
+      propertyPath: m_TagString
+      value: Root
       objectReference: {fileID: 0}
     - target: {fileID: 8451711937902787501, guid: b5001f1da575e2e4a89fd0f2f1022997, type: 3}
       propertyPath: m_RootOrder
