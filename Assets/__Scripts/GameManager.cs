@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Tree Stuff")]
     public GameObject treePrefab;
     public TextMeshProUGUI timerText;
-    public float spawnInterval = 30f;
+    public float spawnInterval = 1f;
     private float spawnTimer;   
     
 

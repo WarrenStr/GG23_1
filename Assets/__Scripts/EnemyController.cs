@@ -63,14 +63,16 @@ public class EnemyController : MonoBehaviour
                 findSpotToMove = true;
             }
         }
-        
 
-        
-        
+
+
+        transform.position = movePoint.position;
         StartCoroutine("moveCycle");
     }
+
+
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }
 }
