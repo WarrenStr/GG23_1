@@ -264,6 +264,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator EndGame()
     {
         // Player death anim
+        Debug.Log("Wolf");
 
         yield return new WaitForSeconds(3);
 
