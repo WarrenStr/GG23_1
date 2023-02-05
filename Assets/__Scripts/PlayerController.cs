@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool specialTreeFound = false;
     public int mouseClick = 0;
     public GameObject currentTree = null;
+    public TextMeshProUGUI speechBubbleText;
 
 
     [Header("Adjustable Variables")]
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag =="Special Item")
         {
             itemsCollectedRef.CountItemsCollected();
+            StartCoroutine(ItemInteraction());
             Destroy(collision.gameObject);
         }
 
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
         if (collision.tag == "Special Item")
         {
             itemsCollectedRef.CountItemsCollected();
+            StartCoroutine(ItemInteraction());
             Destroy(collision.gameObject);
         }
     }
@@ -189,6 +193,23 @@ public class PlayerController : MonoBehaviour
         treeFound= false;
 
         speechBubble.SetActive(true);
+
+        speechBubbleText.text = "So that just happened!";
+
+        yield return new WaitForSeconds(3);
+
+        speechBubble.SetActive(false);
+    }
+
+    private IEnumerator ItemInteraction()
+    {
+        // Tree Shake Animation
+
+        treeFound = false;
+
+        speechBubble.SetActive(true);
+
+        speechBubbleText.text = "Item found!";
 
         yield return new WaitForSeconds(3);
 
