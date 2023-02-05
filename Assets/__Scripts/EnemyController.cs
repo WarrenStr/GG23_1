@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     [Header("Adjustable Variables")]
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] LayerMask whatStopMovement;
+    [SerializeField] LayerMask whatKillsWolves;
 
     [Header("Add before Runtime")]
     [SerializeField] Transform movePoint;
@@ -75,81 +76,94 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-
-        if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
+        if (Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatKillsWolves))
         {
-            movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
-            
+
+            anim.SetBool("wolfzorb", true);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
         }
         else
         {
-            int i = 0;
-            while (!findSpotToMove)
+            if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
             {
-                horizontal = 0;
-                verticle = 0;
-                switch (Random.Range(0, 4))
-                {
-                    case 3:
-                        horizontal = 1;
-                        break;
-                    case 2:
-                        horizontal = -1;
-                        break;
-                    case 1:
-                        verticle = 1;
-                        break;
-                    case 0:
-                        verticle = -1;
-                        break;
+                movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
 
-                }
+            }
+            else
+            {
+                int i = 0;
+                while (!findSpotToMove)
+                {
+                    horizontal = 0;
+                    verticle = 0;
+                    switch (Random.Range(0, 4))
+                    {
+                        case 3:
+                            horizontal = 1;
+                            break;
+                        case 2:
+                            horizontal = -1;
+                            break;
+                        case 1:
+                            verticle = 1;
+                            break;
+                        case 0:
+                            verticle = -1;
+                            break;
+
+                    }
 
 
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
-                {
-                    movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
-                    findSpotToMove = true;
-                }
-                i++;
-                if (i == 6)
-                {
-                    findSpotToMove = true;
+                    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
+                    {
+                        movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
+                        findSpotToMove = true;
+                    }
+                    i++;
+                    if (i == 6)
+                    {
+                        findSpotToMove = true;
+                    }
                 }
             }
+
+
+
+            //if (nearPlayer)
+            //{
+            //    switch (directionToPlayer)
+            //    {
+            //        case 3:
+            //            horizontal = -1;
+            //            break;
+            //        case 2:
+            //            horizontal = 1;
+            //            break;
+            //        case 1:
+            //            verticle = -1;
+            //            break;
+            //        case 0:
+            //            verticle = 1;
+            //            break;
+
+            //    }
+            //    print(directionToPlayer);
+            //    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
+            //    {
+            //        movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
+            //        findSpotToMove = true;
+            //    }
+
+            //}
+            transform.position = movePoint.position;
+            StartCoroutine("moveCycle");
+
         }
 
-        
 
-        //if (nearPlayer)
-        //{
-        //    switch (directionToPlayer)
-        //    {
-        //        case 3:
-        //            horizontal = -1;
-        //            break;
-        //        case 2:
-        //            horizontal = 1;
-        //            break;
-        //        case 1:
-        //            verticle = -1;
-        //            break;
-        //        case 0:
-        //            verticle = 1;
-        //            break;
 
-        //    }
-        //    print(directionToPlayer);
-        //    if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(horizontal, verticle, 0f), .2f, whatStopMovement))
-        //    {
-        //        movePoint.position = movePoint.position += new Vector3(horizontal, verticle, 0f);
-        //        findSpotToMove = true;
-        //    }
-            
-        //}
 
-        transform.position = movePoint.position;
-        StartCoroutine("moveCycle");
     }
 
 
