@@ -109,6 +109,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Special Item")
+        {
+            itemsCollectedRef.CountItemsCollected();
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Tree")
