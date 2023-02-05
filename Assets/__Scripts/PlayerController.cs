@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(TreeInteraction());
             }
 
-            if(Input.GetKeyDown(KeyCode.Mouse0)) 
+            if(Input.GetKeyDown(KeyCode.Space)) 
             {
                 // Tree Shake Animation
                 mouseClick++;
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(TreeInteraction());
             }
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Tree Shake Animation
                 mouseClick++;

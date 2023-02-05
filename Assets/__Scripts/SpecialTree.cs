@@ -38,7 +38,5 @@ public class SpecialTree : MonoBehaviour
     //public IEnumerator DropPickupItem()
     //{
     //    yield return new WaitForSeconds(3);
-
-
     //}
 }
